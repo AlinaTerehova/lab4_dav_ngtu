@@ -1,1 +1,22 @@
+name: Публикация на GitHub Pages
+
+on:
+  release:
+    types: [published]   
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Загрузка кода из репозитория
+        uses: actions/checkout@v4  
+
+      - name: Публикация сайта на GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}   
+          publish_dir: .                             
+          keep_files: true                            
+          destination_dir: v${{ github.event.release.tag_name }}  
 
