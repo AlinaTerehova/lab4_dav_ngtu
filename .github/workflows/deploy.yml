@@ -12,10 +12,18 @@ jobs:
       - name: Загрузка кода из репозитория
         uses: actions/checkout@v4  
 
-      - name: Публикация сайта на GitHub Pages
+      - name: Публикация версии в папку v<release>
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}   
           publish_dir: public          
           keep_files: true              
-          destination_dir: v${{ github.event.release.tag_name }}  
+          destination_dir: ${{ github.event.release.tag_name }}  
+
+      - name: Дублируем последнюю версию в корень
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public
+          keep_files: true
+          destination_dir: ""  
