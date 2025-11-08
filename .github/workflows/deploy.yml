@@ -16,7 +16,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}   
-          publish_dir: ru, en, index.html
+          publish_dir: ""
           keep_files: true              
           destination_dir: ${{ github.event.release.tag_name }}  
 
@@ -24,6 +24,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ru, en, index.html
+          publish_dir: ""
           keep_files: true
           destination_dir: ""  
